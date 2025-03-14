@@ -1,0 +1,10 @@
+{
+  "[project]/src/components/Header.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/Header.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_a8197c51._.js",
+      "static/chunks/_3a4aabd2._.js",
+      "static/chunks/src_components_Header_tsx_f6da0abb._.js"
+    ]
+  }
+}

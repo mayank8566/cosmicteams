@@ -1,0 +1,432 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-space-dark text-white font-sans;
+  }
+  /* Add Gradient Text Fix */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-weight: 700;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-space-indigo hover:bg-space-purple text-white font-bold py-2 px-6 rounded-full transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-space-cyan text-space-cyan hover:bg-space-cyan/10 font-bold py-2 px-6 rounded-full transition-all duration-300;
+  }
+  
+  .btn-gradient {
+    @apply bg-gradient-to-r from-space-indigo via-space-purple to-space-pink text-white font-bold py-2 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 hover:brightness-110;
+  }
+  
+  .btn-gradient-secondary {
+    @apply border-2 border-space-cyan/50 hover:border-space-indigo font-bold py-2 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+  }
+  
+  .btn-gradient-secondary span {
+    @apply bg-gradient-to-r from-space-cyan to-space-indigo gradient-text;
+  }
+  
+  .cosmic-card {
+    @apply bg-space-blue/80 backdrop-blur-md rounded-xl p-6 border border-space-purple/30 shadow-xl;
+  }
+  
+  .cosmic-input {
+    @apply bg-space-blue/50 border border-space-purple/50 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-space-cyan transition-all duration-300;
+  }
+  
+  .focus\:cosmic-glow-input:focus {
+    box-shadow: 0 0 0 2px #16BDE4, 0 0 15px rgba(22, 189, 228, 0.4);
+  }
+
+  /* New button animations */
+  .btn-pulse {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-pulse::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: inherit;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  
+  .btn-pulse:hover::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-ripple::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+  }
+  
+  .btn-ripple:active::after {
+    transform: scale(0, 0);
+    opacity: 0.2;
+    transition: 0s;
+  }
+  
+  /* Hover shine effect */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.75s;
+  }
+  
+  .btn-shine:hover::before {
+    left: 125%;
+  }
+  
+  /* Enhanced cosmic card hover */
+  .cosmic-card-hover {
+    @apply transition-all duration-500;
+  }
+  
+  .cosmic-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+}
+
+/* Stars background code removed as requested */
+
+.cosmic-glow {
+  text-shadow: 0 0 10px rgba(97, 75, 143, 0.8), 0 0 20px rgba(97, 75, 143, 0.5);
+  animation: pulsateGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulsateGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(97, 75, 143, 0.8), 0 0 20px rgba(97, 75, 143, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(97, 75, 143, 1), 0 0 30px rgba(97, 75, 143, 0.8), 0 0 40px rgba(97, 75, 143, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(97, 75, 143, 0.8), 0 0 20px rgba(97, 75, 143, 0.5);
+  }
+}
+
+.cosmic-gradient {
+  background: linear-gradient(135deg, #3E54D3, #614B8F, #FF338F);
+}
+
+.floating {
+  animation: floating 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(0px) translateX(0px);
+  }
+  75% {
+    transform: translateY(10px) translateX(-5px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+.rotate-slow {
+  animation: rotate 20s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* New animations for login/register pages */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.7s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes pulseLight {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.group:hover .group-hover\:animate-pulse-light {
+  animation: pulseLight 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceGentle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+.group:hover .group-hover\:animate-bounce-gentle {
+  animation: bounceGentle 1s ease-in-out infinite;
+}
+
+/* New hover and focus effects */
+@keyframes borderPulse {
+  0% { border-color: rgba(139, 92, 246, 0.3); }
+  50% { border-color: rgba(139, 92, 246, 0.8); }
+  100% { border-color: rgba(139, 92, 246, 0.3); }
+}
+
+.border-pulse {
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Button press effect */
+.btn-press {
+  transition: transform 0.1s;
+}
+
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+/* Star twinkle effect */
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.twinkle-delay-1 {
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.twinkle-delay-2 {
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* For gradient text links in the navbar */
+.btn-gradient-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Improve text gradient visibility */
+.bg-clip-text.text-transparent.cosmic-gradient,
+.gradient-text {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: bold;
+  display: inline-block;
+  color: #614B8F; /* Fallback */
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 1px 0; /* Slight padding helps with visibility */
+}
+
+/* Support for Firefox which doesn't handle text-fill-color well */
+@-moz-document url-prefix() {
+  .gradient-text, 
+  .bg-clip-text.text-transparent.cosmic-gradient {
+    background-clip: text !important;
+    color: transparent !important;
+    font-weight: bold;
+    text-shadow: 0 0 1px rgba(150, 100, 200, 0.5);
+  }
+}
+
+/* Performance optimizations */
+* {
+  text-rendering: optimizeLegibility;
+}
+
+/* Add prefetch for better navigation */
+.link-prefetch:hover::before {
+  content: attr(href);
+  display: none;
+}
+
+/* Tier Card Styling */
+.tier-card {
+  transition: all 0.3s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-5px);
+}
+
+.cur-tier {
+  min-width: 60px;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 10px 0;
+  transition: all 0.3s ease;
+}
+
+/* Low Tier Colors */
+.tier-lt {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: 2px solid #3498db;
+}
+
+.tier-lt-1 { opacity: 0.6; }
+.tier-lt-2 { opacity: 0.7; }
+.tier-lt-3 { opacity: 0.8; }
+.tier-lt-4 { opacity: 0.9; }
+.tier-lt-5 { opacity: 1; box-shadow: 0 0 20px rgba(52, 152, 219, 0.5); }
+
+/* High Tier Colors */
+.tier-ht {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border: 2px solid #e74c3c;
+}
+
+.tier-ht-1 { opacity: 0.6; }
+.tier-ht-2 { opacity: 0.7; }
+.tier-ht-3 { opacity: 0.8; }
+.tier-ht-4 { opacity: 0.9; }
+.tier-ht-5 { opacity: 1; box-shadow: 0 0 20px rgba(231, 76, 60, 0.5); }
+
+/* Loading animation for tier page */
+#loading-screen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-loader {
+  display: flex;
+  gap: 5px;
+}
+
+.line-loader span {
+  display: inline-block;
+  width: 10px;
+  border-radius: 50px;
+  height: 30px;
+  background: #ffffff;
+  animation: upDown 1s infinite ease-in-out;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.8);
+}
+
+.line-loader span:nth-child(1) { animation-delay: 0s; }
+.line-loader span:nth-child(2) { animation-delay: 0.2s; }
+.line-loader span:nth-child(3) { animation-delay: 0.4s; }
+.line-loader span:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes upDown {
+  0%, 100% { height: 30px; transform: translateY(0); }
+  50% { height: 50px; transform: translateY(-10px); }
+}

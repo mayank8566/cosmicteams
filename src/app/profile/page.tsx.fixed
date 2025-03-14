@@ -1,0 +1,212 @@
+'use client';
+
+import React, { useState, useEffect, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/AuthContext';
+import { useProfile } from '@/lib/ProfileContext';
+import type { GameMode, TierValue } from '@/lib/ProfileContext';
+import ClientImage from '@/components/ClientImage';
+
+// Game mode options and their display names
+const GAME_MODES: { value: GameMode; label: string }[] = [
+  { value: 'neth-op', label: 'Nether OP' },
+  { value: 'axe', label: 'Axe' },
+  { value: 'smp', label: 'SMP' },
+  { value: 'cpvp', label: 'Crystal PVP' },
+  { value: 'sword', label: 'Sword' },
+  { value: 'uhc', label: 'UHC' }
+];
+
+// Tier options
+const TIER_OPTIONS: { value: TierValue; label: string }[] = [
+  { value: 'LT1', label: 'Low Tier 1' },
+  { value: 'LT2', label: 'Low Tier 2' },
+  { value: 'LT3', label: 'Low Tier 3' },
+  { value: 'LT4', label: 'Low Tier 4' },
+  { value: 'LT5', label: 'Low Tier 5' },
+  { value: 'HT1', label: 'High Tier 1' },
+  { value: 'HT2', label: 'High Tier 2' },
+  { value: 'HT3', label: 'High Tier 3' },
+  { value: 'HT4', label: 'High Tier 4' },
+  { value: 'HT5', label: 'High Tier 5' }
+];
+
+export default function ProfilePage() {
+  const router = useRouter();
+  const { user } = useAuth();
+  const { profile, updating, error, updateProfileData, uploadProfileImage } = useProfile();
+  
+  const [displayName, setDisplayName] = useState('');
+  const [bio, setBio] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [gameTiers, setGameTiers] = useState<{ [key in GameMode]?: TierValue }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    if (profile) {
+      setDisplayName(profile.displayName || '');
+      setBio(profile.bio || '');
+      setGameTiers(profile.gameTiers || {});
+    }
+  }, [user, profile, router]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    try {
+      setIsSubmitting(true);
+
+      // Upload image if selected
+      let photoURL = profile?.photoURL;
+      if (selectedImage) {
+        try {
+          photoURL = await uploadProfileImage(selectedImage);
+        } catch (err) {
+          alert(err instanceof Error ? err.message : 'Failed to upload image');
+          return;
+        }
+      }
+
+      // Update profile data
+      await updateProfileData({
+        displayName,
+        bio,
+        photoURL,
+        gameTiers
+      });
+
+      alert('Profile updated successfully!');
+      setSelectedImage(null);
+    } catch (err) {
+      alert('Failed to update profile. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold gradient-text">Profile Settings</h1>
+        <button
+          onClick={() => router.push('/')}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+        >
+          Home
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-2">Profile Image</label>
+            <div className="flex items-center space-x-4">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200">
+                <img
+                  src={imagePreview || profile?.photoURL || '/default-avatar.png'}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700 file:cursor-pointer"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Display Name</label>
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Bio</label>
+            <textarea
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
+              rows={4}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Game Tiers</label>
+            {GAME_MODES.map((mode) => (
+              <div key={mode.value} className="flex items-center space-x-4 mb-4">
+                <span className="w-24">{mode.label}:</span>
+                <select
+                  value={gameTiers[mode.value] || ''}
+                  onChange={(e) => setGameTiers(prev => ({
+                    ...prev,
+                    [mode.value]: e.target.value as TierValue
+                  }))}
+                  className="px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
+                >
+                  <option value="">Select Tier</option>
+                  {TIER_OPTIONS.map((tier) => (
+                    <option key={tier.value} value={tier.value}>{tier.label}</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-4 rounded-lg bg-white/5 backdrop-blur-sm">
+            <h3 className="text-lg font-medium mb-2">Team Creation Access</h3>
+            <p className="text-sm">
+              Status: {profile?.canCreateTeams ? (
+                <span className="text-green-500 font-medium">Enabled</span>
+              ) : (
+                <span className="text-yellow-500 font-medium">Not enabled - Contact an admin to request access</span>
+              )}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={isSubmitting || updating}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50"
+          >
+            {isSubmitting || updating ? 'Saving...' : 'Save Changes'}
+          </button>
+        </div>
+
+        {error && (
+          <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}

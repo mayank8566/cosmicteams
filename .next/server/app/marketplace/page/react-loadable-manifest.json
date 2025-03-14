@@ -1,0 +1,45 @@
+{
+  "[project]/src/components/Header.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/Header.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_next_15251bc2._.js",
+      "static/chunks/src_components_8ba03a69._.js",
+      "static/chunks/src_components_Header_tsx_9ec0f398._.js"
+    ]
+  },
+  "[project]/src/components/marketplace/BackgroundEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/marketplace/BackgroundEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/src_components_marketplace_BackgroundEffectPreview_tsx_855ab77a._.js",
+      "static/chunks/src_components_marketplace_BackgroundEffectPreview_tsx_9ec0f398._.js"
+    ]
+  },
+  "[project]/src/components/marketplace/AvatarEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/marketplace/AvatarEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/src_components_aba67a85._.js",
+      "static/chunks/src_components_marketplace_AvatarEffectPreview_tsx_9ec0f398._.js"
+    ]
+  },
+  "[project]/src/components/marketplace/ProfileEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/marketplace/ProfileEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/src_components_marketplace_ProfileEffectPreview_tsx_262927a5._.js",
+      "static/chunks/src_components_marketplace_ProfileEffectPreview_tsx_9ec0f398._.js"
+    ]
+  },
+  "[project]/src/components/marketplace/LogoEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/marketplace/LogoEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/src_components_marketplace_LogoEffectPreview_tsx_264bbfcf._.js",
+      "static/chunks/src_components_marketplace_LogoEffectPreview_tsx_9ec0f398._.js"
+    ]
+  },
+  "[project]/src/components/marketplace/BannerEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/marketplace/BannerEffectPreview.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/src_components_marketplace_BannerEffectPreview_tsx_f23a54b0._.js",
+      "static/chunks/src_components_marketplace_BannerEffectPreview_tsx_9ec0f398._.js"
+    ]
+  }
+}
