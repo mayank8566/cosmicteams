@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npx next build",
+    "build": "CI=false npm ci && npx next build",
     "start": "npx next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx tailwindcss init -p"
   },
   "engines": {
     "node": ">=18.0.0"
