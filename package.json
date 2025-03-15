@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npm install --no-package-lock && npm install --save-dev tailwindcss postcss autoprefixer && npx tailwindcss init -p && NEXT_TELEMETRY_DISABLED=1 npx next build",
+    "build": "npm install --no-package-lock && npm install --save-dev tailwindcss postcss autoprefixer && node -e \"require('fs').existsSync('tailwind.config.js') || require('child_process').execSync('npx tailwindcss init')\" && node -e \"require('fs').existsSync('postcss.config.js') || require('fs').writeFileSync('postcss.config.js', 'module.exports = {plugins: {tailwindcss: {}, autoprefixer: {},},};')\" && NEXT_TELEMETRY_DISABLED=1 npx next build",
     "start": "npx next start",
     "lint": "next lint",
-    "postinstall": "npx tailwindcss init -p"
+    "postinstall": "echo \"Skipping automatic tailwind init\""
   },
   "engines": {
     "node": ">=18.0.0"
