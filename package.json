@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npx next build",
+    "build": "npm ci && npm install --no-save tailwindcss autoprefixer postcss && npx tailwindcss init -p && npx next build",
     "start": "npx next start",
     "lint": "next lint",
     "postinstall": "npx tailwindcss init -p"
