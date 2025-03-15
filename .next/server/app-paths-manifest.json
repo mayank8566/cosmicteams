@@ -1,8 +1,22 @@
 {
-  "/admin/page": "app/admin/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/blitz-teams/page": "app/blitz-teams/page.js",
   "/login/page": "app/login/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/mail/page": "app/mail/page.js",
   "/marketplace/page": "app/marketplace/page.js",
   "/page": "app/page.js",
+  "/profile/[username]/page": "app/profile/[username]/page.js",
+  "/profile/page": "app/profile/page.js",
   "/register/page": "app/register/page.js",
-  "/teams/[id]/page": "app/teams/[id]/page.js"
+  "/settings/page": "app/settings/page.js",
+  "/spinner/page": "app/spinner/page.js",
+  "/blitz/page": "app/blitz/page.js",
+  "/create-team/page": "app/create-team/page.js",
+  "/teams/[id]/page": "app/teams/[id]/page.js",
+  "/tier/page": "app/tier/page.js",
+  "/teams/[id]/settings/page": "app/teams/[id]/settings/page.js",
+  "/admin/tokens/page": "app/admin/tokens/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/token-management/page": "app/admin/token-management/page.js"
 }

@@ -1,1 +1,52 @@
-{}
+{
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": 472,
+    "files": [
+      "static/chunks/472.a3826d29d6854395.js"
+    ]
+  },
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": 9341,
+    "files": [
+      "static/chunks/341.34f2b76c309db662.js"
+    ]
+  },
+  "app\\marketplace\\page.tsx -> @/components/marketplace/AvatarEffectPreview": {
+    "id": 452,
+    "files": [
+      "static/chunks/452.ed7d595dd804b481.js"
+    ]
+  },
+  "app\\marketplace\\page.tsx -> @/components/marketplace/BackgroundEffectPreview": {
+    "id": 4205,
+    "files": [
+      "static/chunks/205.7c92d7bc6e44ee0e.js"
+    ]
+  },
+  "app\\marketplace\\page.tsx -> @/components/marketplace/BannerEffectPreview": {
+    "id": 6667,
+    "files": [
+      "static/chunks/667.d3ff00ec5ea3bb37.js"
+    ]
+  },
+  "app\\marketplace\\page.tsx -> @/components/marketplace/LogoEffectPreview": {
+    "id": 5422,
+    "files": [
+      "static/chunks/422.4a069b882f4f1ea7.js"
+    ]
+  },
+  "app\\marketplace\\page.tsx -> @/components/marketplace/ProfileEffectPreview": {
+    "id": 8072,
+    "files": [
+      "static/chunks/72.0b1bd48df32113e2.js"
+    ]
+  },
+  "components\\HeaderWrapper.tsx -> ./Header": {
+    "id": 4615,
+    "files": [
+      "static/chunks/766-29b0863e7da66cae.js",
+      "static/chunks/874-57e15d630a317940.js",
+      "static/chunks/615.c969c8ef77e3b4af.js"
+    ]
+  }
+}

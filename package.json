@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "CI=false npm ci && npx next build",
+    "build": "npx next build",
     "start": "npx next start",
     "lint": "next lint",
     "postinstall": "npx tailwindcss init -p"
@@ -28,7 +28,7 @@
     "@types/react": "^18.2.52",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
-    "eslint-config-next": "^15.2.2",
+    "eslint-config-next": "^14.1.0",
     "typescript": "^5.3.3"
   }
 }
