@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npm ci && npm install --no-save tailwindcss autoprefixer postcss && npx tailwindcss init -p && npx next build",
+    "build": "npm install --no-package-lock && npm install --save-dev tailwindcss postcss autoprefixer && npx tailwindcss init -p && NEXT_TELEMETRY_DISABLED=1 npx next build",
     "start": "npx next start",
     "lint": "next lint",
     "postinstall": "npx tailwindcss init -p"
@@ -13,15 +13,12 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.17",
     "firebase": "^10.8.0",
     "next": "^15.2.2",
-    "postcss": "^8.4.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-firebase-hooks": "^5.1.1",
-    "react-hot-toast": "^2.4.1",
-    "tailwindcss": "^3.4.1"
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
